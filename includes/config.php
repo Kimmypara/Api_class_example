@@ -1,7 +1,7 @@
 <?php
-
+//this file is database connection
 $db_user = 'root';
-$db_password = 'root';
+$db_password = '';
 $db_name = 'api_2026';
 
 //PDO = PHP Data Objects
