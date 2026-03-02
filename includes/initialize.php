@@ -8,7 +8,10 @@
 defined('DS') ? null : define('DS', DIRECTORY_SEPERATOR);
 defined('SITE_ROOT') ? null : define('SITE_ROOT', DS.'xamp'.DS.'htdocs'.DS.'API_class_example');
 
+defined("CORE_PATH") ? null : define("CORE_PATH", SITE_ROOT.DS."core".DS); 
+
 require_once("config.php");
 
+require_once(CORE_PATH."user.php");
 
 ?>
