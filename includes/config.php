@@ -8,7 +8,7 @@ $db_name = 'api_2026';
 //Used for Objects Oriented Programming
 //Creating an 'Object' makes our codemore organised
 $db = new PDO(
-    'mysql:host=127.0.0.1;dbname='.$db_name.';charset=ut8',
+    'mysql:host=127.0.0.1;dbname='.$db_name.';charset=utf8',
     $db_user,
     $db_password
 );
