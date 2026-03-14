@@ -13,5 +13,6 @@ defined("CORE_PATH") ? null : define("CORE_PATH", SITE_ROOT.DS."core".DS);
 require_once("config.php");
 
 require_once(CORE_PATH."user.php");
+require_once(CORE_PATH."post.php");
 
 ?>
