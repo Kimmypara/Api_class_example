@@ -3,7 +3,7 @@
 class Post{
     // db related properties
 private $conn;
-private $table ="posts";
+private $table ="post";
 private $alias = "p";
 
     // table fields
