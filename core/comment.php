@@ -1,16 +1,16 @@
 <?php
 
-class Post{
+class Comment{
     // db related properties
 private $conn;
-private $table ="post";
-private $alias = "p";
+private $table ="comment";
+private $alias = "c";
 
     // table fields
-public $post_id ;
-public $title;
-public $content;
-public $user_id ;
+public $comment_id;
+public $comment;
+public $user_id;
+public $post_id;
 
 
     //constructor with db connection
