@@ -56,6 +56,34 @@ public $user_id ;
         return $stmt;
     }
 
+         // create a new post record
+public function create(){
+    $query = "INSERT INTO {$this->table}
+    (title, content , user_id )
+    VALUES (:title,:content, :user_id);";
+
+    $stmt = $this->conn->prepare($query);
+
+    // clean up data sent by user
+    $this->title = htmlspecialchars(strip_tags($this->title));
+    $this->content = htmlspecialchars(strip_tags($this->content));
+    $this->user_id  = htmlspecialchars(strip_tags($this->user_id ));
+
+    // bind parameters to sql statement
+    $stmt->bindParam(":title", $this->title);
+    $stmt->bindParam(":content", $this->content);
+    $stmt->bindParam(":user_id", $this->user_id);
+
+    
+    if($stmt->execute()){
+        return true;
+    }
+   
+    printf("Error %s. \n", $stmt->error);
+    
+    return false;
+}
+
 }
 
 ?>

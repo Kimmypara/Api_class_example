@@ -8,23 +8,23 @@ header("Access-Control-Allow-Headers: Access-Control-Allow-Origin, Content-Type,
 
 include_once("../../includes/initialize.php");
 
-// creat a new instance of the post class
+// creat a new instance of the comment class
 // This allows us to use its structure and function
-$post = new Post($db);
+$comment = new Comment($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
 // fill in user instance properties with decoded values from request
-$post->title = $data->title;
-$post->content = $data->content;
-$post->user_id  = $data->user_id ;
+$comment->comment = $data->comment;
+$comment->user_id = $data->user_id;
+$comment->post_id = $data->post_id;
 
 
-if($post->create()){
-    echo json_encode(array("message" => "Post created."));
+if($comment->create()){
+    echo json_encode(array("message" => "Comment created."));
 }
 else{
-echo json_encode(array("message" => "Post not created."));
+echo json_encode(array("message" => "Comment not created."));
     }
 
 ?>
