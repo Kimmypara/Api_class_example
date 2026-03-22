@@ -14,5 +14,6 @@ require_once("config.php");
 
 require_once(CORE_PATH."user.php");
 require_once(CORE_PATH."post.php");
+require_once(CORE_PATH."comment.php");
 
 ?>
