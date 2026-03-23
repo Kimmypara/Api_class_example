@@ -84,6 +84,62 @@ public function create(){
     return false;
 }
 
+//update a user record
+public function update(){
+    $query = "UPDATE {$this->table}
+            SET title =:title,
+                content = :content,
+                user_id = :user_id
+                WHERE post_id = :post_id;";
+
+                $stmt = $this->conn->prepare($query);
+
+    // clean up data sent by user
+    $this->post_id = htmlspecialchars(strip_tags($this->post_id));
+    $this->title = htmlspecialchars(strip_tags($this->title));
+    $this->content = htmlspecialchars(strip_tags($this->content));
+    $this->user_id  = htmlspecialchars(strip_tags($this->user_id ));
+
+    // bind parameters to sql statement
+    $stmt->bindParam(":post_id", $this->post_id);
+    $stmt->bindParam(":title", $this->title);
+    $stmt->bindParam(":content", $this->content);
+    $stmt->bindParam(":user_id ", $this->user_id );
+
+    if($stmt->execute()){
+        return true;
+    }
+   
+    printf("Error %s. \n", $stmt->error);
+    
+    return false;
+}
+
+//update title of a user record
+public function updateTitle(){
+    $query = "UPDATE {$this->table}
+            SET title = :title
+                WHERE post_id = :post_id;";
+
+                $stmt = $this->conn->prepare($query);
+
+    // clean up data sent by user
+    $this->post_id = htmlspecialchars(strip_tags($this->post_id));
+    $this->title = htmlspecialchars(strip_tags($this->title));
+
+    // bind parameters to sql statement
+    $stmt->bindParam(":post_id", $this->post_id);
+    $stmt->bindParam(":title", $this->title);
+
+    if($stmt->execute()){
+        return true;
+    }
+   
+    printf("Error %s. \n", $stmt->error);
+    
+    return false;
+}
+
 }
 
 ?>

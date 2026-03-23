@@ -84,6 +84,62 @@ public function create(){
     return false;
 }
 
+//update
+public function update(){
+   $query = "UPDATE {$this->table}
+            SET comment =:comment,
+                user_id = :user_id,
+                post_id = :post_id
+                WHERE comment_id = :comment_id;";
+    $stmt = $this->conn->prepare($query);
+
+    // clean up data sent by user
+    $this->comment_id = htmlspecialchars(strip_tags($this->comment_id));
+    $this->comment = htmlspecialchars(strip_tags($this->comment));
+    $this->user_id = htmlspecialchars(strip_tags($this->user_id));
+    $this->post_id = htmlspecialchars(strip_tags($this->post_id));
+
+    // bind parameters to sql statement
+    $stmt->bindParam(":comment_id", $this->comment_id);
+    $stmt->bindParam(":comment", $this->comment);
+    $stmt->bindParam(":user_id", $this->user_id);
+    $stmt->bindParam(":post_id", $this->post_id);
+
+    
+    if($stmt->execute()){
+        return true;
+    }
+   
+    printf("Error %s. \n", $stmt->error);
+    
+    return false;
+}
+
+//update comment
+public function updateComment(){
+   $query = "UPDATE {$this->table}
+            SET comment =:comment
+                WHERE comment_id = :comment_id;";
+    $stmt = $this->conn->prepare($query);
+
+    // clean up data sent by user
+    $this->comment_id = htmlspecialchars(strip_tags($this->comment_id));
+    $this->comment = htmlspecialchars(strip_tags($this->comment));
+
+    // bind parameters to sql statement
+    $stmt->bindParam(":comment_id", $this->comment_id);
+    $stmt->bindParam(":comment", $this->comment);
+
+    
+    if($stmt->execute()){
+        return true;
+    }
+   
+    printf("Error %s. \n", $stmt->error);
+    
+    return false;
+}
+
 }
 
 ?>
