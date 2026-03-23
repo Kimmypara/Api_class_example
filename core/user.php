@@ -142,6 +142,27 @@ public function updateAge(){
     return false;
 }
 
+//Delete a user record
+public function delete(){
+    $query = "DELETE FROM {$this->table}
+                WHERE user_id = :user_id;";
+
+                $stmt = $this->conn->prepare($query);
+
+    // clean up data sent by user
+    $this->user_id = htmlspecialchars(strip_tags($this->user_id));
+
+    // bind parameters to sql statement
+    $stmt->bindParam(":user_id", $this->user_id);
+
+    if($stmt->execute()){
+        return true;
+    }
+   
+    printf("Error %s. \n", $stmt->error);
+    
+    return false;
+}
 }
 
 ?>

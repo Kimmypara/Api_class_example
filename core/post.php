@@ -104,7 +104,7 @@ public function update(){
     $stmt->bindParam(":post_id", $this->post_id);
     $stmt->bindParam(":title", $this->title);
     $stmt->bindParam(":content", $this->content);
-    $stmt->bindParam(":user_id ", $this->user_id );
+    $stmt->bindParam(":user_id", $this->user_id );
 
     if($stmt->execute()){
         return true;
