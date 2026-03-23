@@ -83,6 +83,39 @@ public function create(){
     return false;
 }
 
+//update a user record
+public function update(){
+    $query = "UPDATE {$this->table}
+            SET user_name =:user_name,
+                first_name = :first_name,
+                last_name = :last_name,
+                age = :age
+                WHERE user_id = :user_id;";
+
+                $stmt = $this->conn->prepare($query);
+
+    // clean up data sent by user
+    $this->user_id = htmlspecialchars(strip_tags($this->user_id));
+    $this->user_name = htmlspecialchars(strip_tags($this->user_name));
+    $this->first_name = htmlspecialchars(strip_tags($this->first_name));
+    $this->last_name = htmlspecialchars(strip_tags($this->last_name));
+    $this->age = htmlspecialchars(strip_tags($this->age));
+
+    // bind parameters to sql statement
+    $stmt->bindParam(":user_id", $this->user_id);
+    $stmt->bindParam(":user_name", $this->user_name);
+    $stmt->bindParam(":first_name", $this->first_name);
+    $stmt->bindParam(":last_name", $this->last_name);
+    $stmt->bindParam(":age", $this->age);
+
+    if($stmt->execute()){
+        return true;
+    }
+   
+    printf("Error %s. \n", $stmt->error);
+    
+    return false;
+}
 
 }
 
