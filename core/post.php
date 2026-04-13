@@ -56,6 +56,20 @@ public $user_id ;
         return $stmt;
     }
 
+    // Read all Post records created by a single User
+    Public function readByUserId(){
+$query = "SELECT *
+        FROM {$this->table} AS {$this->alias}
+        WHERE {$this->alias}.user_id = ?
+        LIMIT 1;";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->user_id);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
          // create a new post record
 public function create(){
     $query = "INSERT INTO {$this->table}

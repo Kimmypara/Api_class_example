@@ -23,10 +23,10 @@ if($num > 0){
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
         extract($row);
         $post_item = array(
-            "post_id "    => $post_id ,
+            "post_id"    => $post_id ,
             "title"       => $title,
             "content"     => $content,
-            "user_id "    => $user_id ,
+            "user_id"    => $user_id ,
             
         );
 
