@@ -140,6 +140,19 @@ public function updateComment(){
     return false;
 }
 
+    // Read all comments records created by a single post
+    Public function readByPostId(){
+$query = "SELECT *
+        FROM {$this->table} AS {$this->alias}
+        WHERE {$this->alias}.post_id = ?;";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->post_id);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
 }
 
 ?>
